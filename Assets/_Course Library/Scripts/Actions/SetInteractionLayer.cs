@@ -1,43 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 /// <summary>
 /// Set the interaction layer of an interactor
 /// </summary>
 public class SetInteractionLayer : MonoBehaviour
 {
-    [Tooltip("The layer that's switched to")]
-    public LayerMask targetLayer = 0;
 
     private XRBaseInteractor interactor = null;
-    private LayerMask originalLayer = 0;
+    private InteractionLayerMask originalLayer;
+    [Tooltip("The layer or layers that are switched to")]
+    public InteractionLayerMask targetLayer = 0;
+
 
     private void Awake()
     {
         interactor = GetComponent<XRBaseInteractor>();
-        originalLayer = interactor.interactionLayerMask;
+        originalLayer = interactor.interactionLayers;
     }
 
-    public void SetTargetLayer()
+    public void ToggleTargetLayer()
     {
-        interactor.interactionLayerMask = targetLayer;
-    }
-
-    public void SetOriginalLayer()
-    {
-        interactor.interactionLayerMask = originalLayer;
-    }
-
-    public void ToggleTargetLayer(bool value)
-    {
-        if (value)
+        if(interactor != null)
         {
-            SetTargetLayer();
+            if (interactor.interactionLayers != originalLayer)
+            {
+
+                interactor.interactionLayers = originalLayer;
+            }
+            else
+            {
+                interactor.interactionLayers = targetLayer;
+            }
         }
-        else
-        {
-            SetOriginalLayer();
-        }
+
     }
 
 }
