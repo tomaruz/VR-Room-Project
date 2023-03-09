@@ -28,8 +28,8 @@ public class MyClockScript : MonoBehaviour
         currentSecond = System.DateTime.Now.Second;
 
 
-        hourHand.rotation = Quaternion.Euler(currentHour * 30, 0, 0);
-        minuteHand.rotation = Quaternion.Euler(currentMinute * 6, 0, 0); 
-        secondHand.rotation = Quaternion.Euler(currentSecond * 6, 0, 0);
+        hourHand.localRotation = Quaternion.Euler(currentHour * 30, 0, 0);
+        minuteHand.localRotation = Quaternion.Euler(currentMinute * 6, 0, 0); 
+        secondHand.localRotation = Quaternion.Euler(currentSecond * 6, 0, 0);
     }
 }
